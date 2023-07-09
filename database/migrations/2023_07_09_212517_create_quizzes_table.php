@@ -1,0 +1,38 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('quizzes', function (Blueprint $table) {
+            $table->id();
+            $table->text('question');
+            $table->text('option1');
+            $table->text('option2');
+            $table->text('answer');
+            $table->unsignedBigInteger('techno_id');
+            $table->timestamps();
+
+            $table->foreign('techno_id')->references('id')->on('technos')->onDelete('cascade');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('quizzes');
+    }
+};
