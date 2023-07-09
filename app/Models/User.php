@@ -41,4 +41,28 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Relation many-to-many entre User et Techno
+    public function technos()
+    {
+        return $this->belongsToMany(Techno::class);
+    }
+
+    // Relation one-to-many entre User et Article
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
+
+    // Relation one-to-many entre User et Comment
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    // Relation one-to-many entre User et Like
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
 }
